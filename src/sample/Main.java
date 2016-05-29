@@ -21,7 +21,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        String Code = "     Hello90 Im the best here      9000 good night";
+        String Code = "     Hello90 Im the best he___re good night\nsiamo| tutti piu belli qua";
 
         SymbolsTable MySymbolsTable = new SymbolsTable();
         Lexer MyLexer = new Lexer(Code, MySymbolsTable);

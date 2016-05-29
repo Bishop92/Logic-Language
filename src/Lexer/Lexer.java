@@ -1,6 +1,5 @@
 package Lexer;
 
-import Common.Symbol;
 import Common.SymbolsTable;
 
 public class Lexer
@@ -44,6 +43,10 @@ public class Lexer
             //It's a number
             return ParseNumToken();
         }
+        else if(Peek_ < SourceCode_.length())
+        {
+            System.out.println("Error on line: " + Line_ + " at char: " + Char_ + ". Unexpected character found: " + CurrentChar);
+        }
 
         return null;
     }
@@ -80,9 +83,6 @@ public class Lexer
             CurrentChar = GetCurrentChar();
         }
 
-        ++Peek_;
-        ++Char_;
-
         return new IDToken(SymbolsTable_.AddSymbol(Name));
     }
 
@@ -97,9 +97,6 @@ public class Lexer
             ++Char_;
             CurrentChar = GetCurrentChar();
         }
-
-        ++Peek_;
-        ++Char_;
 
         return new NumToken(Integer.parseInt(Value));
     }
