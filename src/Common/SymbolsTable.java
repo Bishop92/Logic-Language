@@ -39,7 +39,8 @@ public class SymbolsTable {
         if(!ReservedKeywords_.contains(Keyword_i))
         {
             ReservedKeywords_.add(Keyword_i);
-            SymbolsTable_.put(Keyword_i, new Symbol(Keyword_i));
+            Symbol ReservedKeyword = new Symbol(Keyword_i, true);
+            SymbolsTable_.put(Keyword_i, ReservedKeyword);
         }
     }
 

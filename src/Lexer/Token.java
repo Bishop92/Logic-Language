@@ -7,8 +7,24 @@ public class Token {
     //The tag that represents the token
     private Tag Tag_;
 
-    public Token(Tag Tag_i) {
+    //The position of the token inside the code
+    private int Position_;
+
+    //The length of the token read
+    private int Length_;
+
+    public Token(Tag Tag_i, int Position_i, int Length_i) {
         Tag_ = Tag_i;
+        Position_ = Position_i;
+        Length_ = Length_i;
+    }
+
+    public int GetPosition() {
+        return Position_;
+    }
+
+    public int GetLength() {
+        return Length_;
     }
 
     public String toString() {

@@ -79,6 +79,9 @@ public class Lexer {
             CommentsFound = false;
 
             while (IsASpace(CurrentChar) || IsATab(CurrentChar) || IsAReturn(CurrentChar)) {
+                if(IsASpecialReturn(CurrentChar)) {
+                    ++Peek_;
+                }
                 if (IsAReturn(CurrentChar)) {
                     ++Line_;
                     Char_ = 0;
@@ -139,6 +142,9 @@ public class Lexer {
     private Token ParseIDToken() {
         String Name = "";
         char CurrentChar = GetCurrentChar();
+
+        int Position = Peek_;
+
         while (Character.isLetterOrDigit(CurrentChar) || CurrentChar == '_') {
             Name += CurrentChar;
             ++Peek_;
@@ -146,12 +152,15 @@ public class Lexer {
             CurrentChar = GetCurrentChar();
         }
 
-        return new IDToken(SymbolsTable_.AddSymbol(Name));
+        return new IDToken(SymbolsTable_.AddSymbol(Name), Position - Line_);
     }
 
     private Token ParseNumToken() {
         String Value = "";
         char CurrentChar = GetCurrentChar();
+
+        int Position = Peek_;
+
         while (Character.isDigit(CurrentChar)) {
             Value += CurrentChar;
             ++Peek_;
@@ -172,9 +181,9 @@ public class Lexer {
                 CurrentChar = GetCurrentChar();
             }
 
-            return new FloatToken(Float.parseFloat(Value));
+            return new FloatToken(Float.parseFloat(Value), Position - Line_, Value.length());
         } else {
-            return new IntegerToken(Integer.parseInt(Value));
+            return new IntegerToken(Integer.parseInt(Value), Position - Line_, Value.length());
         }
     }
 
@@ -185,15 +194,15 @@ public class Lexer {
             if(NextChar == '>') {
                 Peek_ += 3;
                 Char_ += 3;
-                return new Token(Tag.IIF);
+                return new Token(Tag.IIF, Peek_ - Line_ - 3, 3);
             }
             Peek_ += 2;
             Char_ += 2;
-            return new Token(Tag.LET);
+            return new Token(Tag.LET, Peek_ - Line_ - 2, 2);
         }
         ++Peek_;
         ++Char_;
-        return new Token(Tag.LT);
+        return new Token(Tag.LT, Peek_ - Line_ - 1, 1);
     }
 
     private Token ParseGreaterToken() {
@@ -201,11 +210,11 @@ public class Lexer {
         if (NextChar == '=') {
             Peek_ += 2;
             Char_ += 2;
-            return new Token(Tag.GET);
+            return new Token(Tag.GET, Peek_ - Line_ - 2, 2);
         }
         ++Peek_;
         ++Char_;
-        return new Token(Tag.GT);
+        return new Token(Tag.GT, Peek_ - Line_ - 1, 1);
     }
 
     private Token ParseEqualToken() {
@@ -214,22 +223,22 @@ public class Lexer {
             case '=':
                 Peek_ += 2;
                 Char_ += 2;
-                return new Token(Tag.EQ);
+                return new Token(Tag.EQ, Peek_ - 2, 2);
             case '>':
                 Peek_ += 2;
                 Char_ += 2;
-                return new Token(Tag.IMPLY);
+                return new Token(Tag.IMPLY, Peek_ - 2, 2);
             default:
         }
         ++Peek_;
         ++Char_;
-        return new Token(Tag.ASSIGN);
+        return new Token(Tag.ASSIGN, Peek_ - 1, 1);
     }
 
     private Token ParseColonToken() {
         ++Peek_;
         ++Char_;
-        return new Token(Tag.COLON);
+        return new Token(Tag.COLON, Peek_ - 1, 1);
     }
 
     private Token ParseParenthesesToken() {
@@ -237,9 +246,9 @@ public class Lexer {
         ++Peek_;
         ++Char_;
         if(CurrentChar == '(') {
-            return new Token(Tag.OPAR);
+            return new Token(Tag.OPAR, Peek_ - 1, 1);
         }
-        return new Token(Tag.CPAR);
+        return new Token(Tag.CPAR, Peek_ - 1, 1);
     }
 
     private Token ParseBracesToken() {
@@ -248,26 +257,26 @@ public class Lexer {
         ++Char_;
         if(CurrentChar == '{') {
             SymbolsTable_ = new SymbolsTable(SymbolsTable_);
-            return new Token(Tag.OBRACE);
+            return new Token(Tag.OBRACE, Peek_ - 1, 1);
         }
 
         if(SymbolsTable_.GetOwner() != null) {
             SymbolsTable_ = SymbolsTable_.GetOwner();
         }
 
-        return new Token(Tag.CBRACE);
+        return new Token(Tag.CBRACE, Peek_ - 1, 1);
     }
 
     private Token ParseCommaToken() {
         ++Peek_;
         ++Char_;
-        return new Token(Tag.COMMA);
+        return new Token(Tag.COMMA, Peek_ - 1, 1);
     }
 
     private Token ParseSemiColonToken() {
         ++Peek_;
         ++Char_;
-        return new Token(Tag.SEMICOLON);
+        return new Token(Tag.SEMICOLON, Peek_ - 1, 1);
     }
 
     private boolean IsASpace(char Char_i) {
@@ -278,8 +287,11 @@ public class Lexer {
         return Char_i == '\t';
     }
 
+    private boolean IsASpecialReturn(char Char_i) {
+        return Char_i == '\r';
+    }
     private boolean IsAReturn(char Char_i) {
-        return Char_i == '\n' || Char_i == (char)13;
+        return Char_i == '\n' || Char_i == '\r';
     }
 
     private char GetCurrentChar() {

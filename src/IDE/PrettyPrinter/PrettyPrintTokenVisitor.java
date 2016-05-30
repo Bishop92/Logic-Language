@@ -1,8 +1,9 @@
 package IDE.PrettyPrinter;
 
 import Common.Symbol;
-import Common.SymbolsTable;
+import Lexer.FloatToken;
 import Lexer.IDToken;
+import Lexer.IntegerToken;
 import Lexer.Token;
 
 import javax.swing.text.SimpleAttributeSet;
@@ -14,37 +15,41 @@ public class PrettyPrintTokenVisitor implements Visitor {
 
     private StyledDocument Document_;
 
-    private SymbolsTable SymbolsTable_;
-
-    public PrettyPrintTokenVisitor(SymbolsTable SymbolsTable_i, StyledDocument Document_i) {
-        SymbolsTable_ = SymbolsTable_i;
+    public PrettyPrintTokenVisitor(StyledDocument Document_i) {
         Document_ = Document_i;
     }
 
     @Override
     public void VisitToken(Token Token_i) {
-        try {
-            Document_.insertString(Document_.getLength(), Token_i.toString() + ' ', null);
-        } catch (Exception exc) {
-            System.out.println(exc);
-        }
+        SimpleAttributeSet KeyWord = new SimpleAttributeSet();
+        StyleConstants.setForeground(KeyWord, Color.BLACK);
+        Document_.setCharacterAttributes(Token_i.GetPosition(), Token_i.GetLength(), KeyWord, true);
+    }
+
+    @Override
+    public void VisitToken(FloatToken Token_i) {
+        SimpleAttributeSet KeyWord = new SimpleAttributeSet();
+        StyleConstants.setForeground(KeyWord, Color.ORANGE);
+        Document_.setCharacterAttributes(Token_i.GetPosition(), Token_i.GetLength(), KeyWord, true);
+    }
+
+    @Override
+    public void VisitToken(IntegerToken Token_i) {
+        SimpleAttributeSet KeyWord = new SimpleAttributeSet();
+        StyleConstants.setForeground(KeyWord, Color.ORANGE);
+        Document_.setCharacterAttributes(Token_i.GetPosition(), Token_i.GetLength(), KeyWord, true);
     }
 
     @Override
     public void VisitToken(IDToken Token_i) {
-        try {
-            Symbol TokenSymbol = Token_i.GetSymbol();
-            if(SymbolsTable_.IsAReservedKeyword(TokenSymbol.GetName()))
-            {
-                SimpleAttributeSet KeyWord = new SimpleAttributeSet();
-                StyleConstants.setForeground(KeyWord, Color.BLUE);
-                Document_.insertString(Document_.getLength(), Token_i.GetSymbol().GetName() + ' ', KeyWord);
-            }
-            else {
-                Document_.insertString(Document_.getLength(), Token_i.GetSymbol().GetName() + ' ', null);
-            }
-        } catch (Exception exc) {
-            System.out.println(exc);
+        Symbol TokenSymbol = Token_i.GetSymbol();
+        SimpleAttributeSet KeyWord = new SimpleAttributeSet();
+        if (TokenSymbol.IsReserved()) {
+            StyleConstants.setForeground(KeyWord, Color.BLUE);
+            StyleConstants.setBold(KeyWord, true);
+        } else {
+            StyleConstants.setForeground(KeyWord, Color.RED);
         }
+        Document_.setCharacterAttributes(Token_i.GetPosition(), Token_i.GetLength(), KeyWord, true);
     }
 }

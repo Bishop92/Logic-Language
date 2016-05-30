@@ -63,9 +63,7 @@ public class IDE extends JFrame {
                 MySymbolsTable.AddReservedKeyword("ax");
                 MySymbolsTable.AddReservedKeyword("rule");
 
-                TxtEditor.setText("");
-
-                PrettyPrintTokenVisitor Visitor = new PrettyPrintTokenVisitor(MySymbolsTable, TxtEditor.getStyledDocument());
+                PrettyPrintTokenVisitor Visitor = new PrettyPrintTokenVisitor(TxtEditor.getStyledDocument());
 
                 Token CurrToken = MyLexer.GetNextToken();
                 while (CurrToken != null) {
