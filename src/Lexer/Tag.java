@@ -1,5 +1,5 @@
 package Lexer;
 
 public enum Tag {
-    ID, NUM
+    ID, INTEGER, FLOAT
 }

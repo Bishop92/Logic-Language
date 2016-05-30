@@ -2,26 +2,12 @@ package sample;
 
 import Common.SymbolsTable;
 import Lexer.Lexer;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
-    }
-
+public class Main {
 
     public static void main(String[] args) {
 
-        String Code = "     Hello90 Im the best he___re good night\nsiamo| tutti piu belli qua";
+        String Code = "     Hello90 /* bonjour     */              /*Im the best he___re good night\nsiamo*/ in 10!!!";
 
         SymbolsTable MySymbolsTable = new SymbolsTable();
         Lexer MyLexer = new Lexer(Code, MySymbolsTable);
@@ -33,7 +19,5 @@ public class Main extends Application {
         }
 
         System.out.println(TokensFound + " tokens have been found");
-
-        launch(args);
     }
 }
