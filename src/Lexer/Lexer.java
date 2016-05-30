@@ -40,8 +40,32 @@ public class Lexer {
         } else if (Character.isDigit(CurrentChar)) {
             //It's a number
             return ParseNumToken();
+        } else if (CurrentChar == '<') {
+            //It's <, <=, <=>
+            return ParseLowerToken();
+        } else if (CurrentChar == '>') {
+            //It's >, >=
+            return ParseGreaterToken();
+        } else if (CurrentChar == '=') {
+            //It's =, ==, =>
+            return ParseEqualToken();
+        } else if (CurrentChar == ':') {
+            //It's :
+            return ParseColonToken();
+        } else if (CurrentChar == '(' || CurrentChar == ')') {
+            //It's (, )
+            return ParseParenthesesToken();
+        } else if (CurrentChar == '{' || CurrentChar == '}') {
+            //It's {, }
+            return ParseBracesToken();
+        }  else if (CurrentChar == ',') {
+            //It's {, }
+            return ParseCommaToken();
+        }  else if (CurrentChar == ';') {
+            //It's {, }
+            return ParseSemiColonToken();
         } else if (Peek_ < SourceCode_.length()) {
-            System.out.println("Error on line: " + Line_ + " at char: " + Char_ + ". Unexpected character found: " + CurrentChar);
+            System.out.println("Error on line: " + Line_ + " at char: " + Char_ + ". Unexpected character found: " + CurrentChar + "(" + (int)CurrentChar + ")");
         }
 
         return null;
@@ -74,7 +98,7 @@ public class Lexer {
                         ++Peek_;
                         CurrentChar = GetCurrentChar();
                     }
-                    if(Peek_ < SourceCode_.length()) {
+                    if (Peek_ < SourceCode_.length()) {
                         ++Line_;
                         Char_ = 0;
                         ++Peek_;
@@ -86,7 +110,7 @@ public class Lexer {
                     CommentsFound = true;
 
                     int CommentLine = Line_;
-                    int CommentChar = Peek_ - 2;
+                    int CommentChar = Char_ - 2;
 
                     CurrentChar = GetCurrentChar();
                     while (Peek_ < SourceCode_.length() && !(CurrentChar == '*' && GetLookAhead() == '/')) {
@@ -100,8 +124,8 @@ public class Lexer {
                         CurrentChar = GetCurrentChar();
                     }
 
-                    if(Peek_ == SourceCode_.length()) {
-                        System.out.println("Missing */ for comment open at line: " + CommentLine + " char: " + CommentChar);
+                    if (Peek_ == SourceCode_.length()) {
+                        System.err.println("Missing */ for comment open at line: " + CommentLine + " char: " + CommentChar);
                     }
 
                     Peek_ += 2;
@@ -154,6 +178,98 @@ public class Lexer {
         }
     }
 
+    private Token ParseLowerToken() {
+        char NextChar = GetLookAhead();
+        if(NextChar == '=') {
+            NextChar = GetLookAhead();
+            if(NextChar == '>') {
+                Peek_ += 3;
+                Char_ += 3;
+                return new Token(Tag.IIF);
+            }
+            Peek_ += 2;
+            Char_ += 2;
+            return new Token(Tag.LET);
+        }
+        ++Peek_;
+        ++Char_;
+        return new Token(Tag.LT);
+    }
+
+    private Token ParseGreaterToken() {
+        char NextChar = GetLookAhead();
+        if (NextChar == '=') {
+            Peek_ += 2;
+            Char_ += 2;
+            return new Token(Tag.GET);
+        }
+        ++Peek_;
+        ++Char_;
+        return new Token(Tag.GT);
+    }
+
+    private Token ParseEqualToken() {
+        char NextChar = GetLookAhead();
+        switch (NextChar) {
+            case '=':
+                Peek_ += 2;
+                Char_ += 2;
+                return new Token(Tag.EQ);
+            case '>':
+                Peek_ += 2;
+                Char_ += 2;
+                return new Token(Tag.IMPLY);
+            default:
+        }
+        ++Peek_;
+        ++Char_;
+        return new Token(Tag.ASSIGN);
+    }
+
+    private Token ParseColonToken() {
+        ++Peek_;
+        ++Char_;
+        return new Token(Tag.COLON);
+    }
+
+    private Token ParseParenthesesToken() {
+        char CurrentChar = GetCurrentChar();
+        ++Peek_;
+        ++Char_;
+        if(CurrentChar == '(') {
+            return new Token(Tag.OPAR);
+        }
+        return new Token(Tag.CPAR);
+    }
+
+    private Token ParseBracesToken() {
+        char CurrentChar = GetCurrentChar();
+        ++Peek_;
+        ++Char_;
+        if(CurrentChar == '{') {
+            SymbolsTable_ = new SymbolsTable(SymbolsTable_);
+            return new Token(Tag.OBRACE);
+        }
+
+        if(SymbolsTable_.GetOwner() != null) {
+            SymbolsTable_ = SymbolsTable_.GetOwner();
+        }
+
+        return new Token(Tag.CBRACE);
+    }
+
+    private Token ParseCommaToken() {
+        ++Peek_;
+        ++Char_;
+        return new Token(Tag.COMMA);
+    }
+
+    private Token ParseSemiColonToken() {
+        ++Peek_;
+        ++Char_;
+        return new Token(Tag.SEMICOLON);
+    }
+
     private boolean IsASpace(char Char_i) {
         return Char_i == ' ';
     }
@@ -163,7 +279,7 @@ public class Lexer {
     }
 
     private boolean IsAReturn(char Char_i) {
-        return Char_i == '\n';
+        return Char_i == '\n' || Char_i == (char)13;
     }
 
     private char GetCurrentChar() {

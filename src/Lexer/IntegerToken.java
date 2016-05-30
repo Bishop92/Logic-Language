@@ -1,12 +1,14 @@
 package Lexer;
 
-public class IntegerToken extends Token
-{
+public class IntegerToken extends Token {
     private int Value_;
 
-    public IntegerToken(int Value_i)
-    {
+    public IntegerToken(int Value_i) {
         super(Tag.INTEGER);
         Value_ = Value_i;
+    }
+
+    public void Print() {
+        System.out.println("<Num," + Value_ + ">");
     }
 }

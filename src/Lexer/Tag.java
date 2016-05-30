@@ -1,5 +1,5 @@
 package Lexer;
 
 public enum Tag {
-    ID, INTEGER, FLOAT
+    ID, INTEGER, FLOAT, IIF, LET, LT, GET, GT, EQ, ASSIGN, IMPLY, COLON, OPAR, CPAR, OBRACE, CBRACE, COMMA, SEMICOLON
 }
