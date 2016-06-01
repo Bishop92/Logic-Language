@@ -13,9 +13,9 @@ public class Token {
     //The length of the token read
     private int Length_;
 
-    public Token(Tag Tag_i, int Position_i, int Length_i) {
+    public Token(Tag Tag_i, int Position_i, int Line_i, int Length_i) {
         Tag_ = Tag_i;
-        Position_ = Position_i;
+        Position_ = Position_i - Line_i;
         Length_ = Length_i;
     }
 

@@ -36,6 +36,13 @@ public class IDE extends JFrame {
                 MySymbolsTable.AddReservedKeyword("isa");
                 MySymbolsTable.AddReservedKeyword("ax");
                 MySymbolsTable.AddReservedKeyword("rule");
+                MySymbolsTable.AddReservedKeyword("true");
+                MySymbolsTable.AddReservedKeyword("false");
+                MySymbolsTable.AddReservedKeyword("and");
+                MySymbolsTable.AddReservedKeyword("or");
+                MySymbolsTable.AddReservedKeyword("not");
+                MySymbolsTable.AddReservedKeyword("xor");
+
 
                 Token CurrToken = MyLexer.GetNextToken();
                 while (CurrToken != null) {
@@ -62,6 +69,14 @@ public class IDE extends JFrame {
                 MySymbolsTable.AddReservedKeyword("isa");
                 MySymbolsTable.AddReservedKeyword("ax");
                 MySymbolsTable.AddReservedKeyword("rule");
+                MySymbolsTable.AddReservedKeyword("true");
+                MySymbolsTable.AddReservedKeyword("false");
+                MySymbolsTable.AddReservedKeyword("and");
+                MySymbolsTable.AddReservedKeyword("or");
+                MySymbolsTable.AddReservedKeyword("not");
+                MySymbolsTable.AddReservedKeyword("xor");
+                MySymbolsTable.AddReservedKeyword("properties");
+                MySymbolsTable.AddReservedKeyword("on");
 
                 PrettyPrintTokenVisitor Visitor = new PrettyPrintTokenVisitor(TxtEditor.getStyledDocument());
 
