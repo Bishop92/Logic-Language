@@ -45,7 +45,7 @@ public class PrettyPrintTokenVisitor implements Visitor {
         Symbol TokenSymbol = Token_i.GetSymbol();
         SimpleAttributeSet KeyWord = new SimpleAttributeSet();
         if (TokenSymbol.IsReserved()) {
-            StyleConstants.setForeground(KeyWord, Color.BLUE);
+            StyleConstants.setForeground(KeyWord, new Color(86, 156, 214));
             StyleConstants.setBold(KeyWord, true);
         } else {
             StyleConstants.setForeground(KeyWord, Color.RED);

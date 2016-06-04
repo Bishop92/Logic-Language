@@ -1,93 +1,66 @@
 package IDE;
 
-import Common.SymbolsTable;
-import IDE.PrettyPrinter.PrettyPrintTokenVisitor;
-import Lexer.*;
+import IDE.Controllers.OpenFilesController;
+import IDE.Controllers.SolutionExplorerController;
+import IDE.Controllers.MenuBarController;
+import IDE.Project.Project;
 
 import javax.swing.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class IDE extends JFrame {
     private JPanel MainPanel;
-    private JButton BtnCompile;
-    private JTextPane TxtEditor;
+    private JTree SolutionExplorer;
+    private JTabbedPane OpenFiles;
+	private JPanel MenuBar;
 
-    public IDE() {
+    //The opened project
+    private Project Project_;
 
-        setSize(600, 600);
+    //The controller of the solution explorer
+    private SolutionExplorerController SolutionExplorerController_;
+
+    //The controller of the menu bar
+    private MenuBarController MenuBarController_;
+
+	//The controller of the open files
+	private OpenFilesController OpenFilesController_;
+
+	public IDE() {
+
+        setSize(1200, 800);
 
         add(MainPanel);
 
-        BtnCompile.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-
-                String Code = TxtEditor.getText();
-
-                SymbolsTable MySymbolsTable = new SymbolsTable();
-                Lexer MyLexer = new Lexer(Code, MySymbolsTable);
-
-                MySymbolsTable.AddReservedKeyword("def");
-                MySymbolsTable.AddReservedKeyword("as");
-                MySymbolsTable.AddReservedKeyword("isa");
-                MySymbolsTable.AddReservedKeyword("ax");
-                MySymbolsTable.AddReservedKeyword("rule");
-                MySymbolsTable.AddReservedKeyword("true");
-                MySymbolsTable.AddReservedKeyword("false");
-                MySymbolsTable.AddReservedKeyword("and");
-                MySymbolsTable.AddReservedKeyword("or");
-                MySymbolsTable.AddReservedKeyword("not");
-                MySymbolsTable.AddReservedKeyword("xor");
-
-
-                Token CurrToken = MyLexer.GetNextToken();
-                while (CurrToken != null) {
-                    CurrToken.Print();
-                    CurrToken = MyLexer.GetNextToken();
-                }
-            }
-        });
-
         setVisible(true);
 
-        TxtEditor.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                super.keyReleased(e);
+		//Save if the IDE is closing
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				super.windowClosing(e);
+				Project_.Save();
+			}
+		});
+	}
 
-                String Code = TxtEditor.getText();
+    private void createUIComponents() {
 
-                SymbolsTable MySymbolsTable = new SymbolsTable();
-                Lexer MyLexer = new Lexer(Code, MySymbolsTable);
+	    //Create the project and load it
+	    Project_ = new Project("Project", "C:\\TestProject");
+	    Project_.Load();
 
-                MySymbolsTable.AddReservedKeyword("def");
-                MySymbolsTable.AddReservedKeyword("as");
-                MySymbolsTable.AddReservedKeyword("isa");
-                MySymbolsTable.AddReservedKeyword("ax");
-                MySymbolsTable.AddReservedKeyword("rule");
-                MySymbolsTable.AddReservedKeyword("true");
-                MySymbolsTable.AddReservedKeyword("false");
-                MySymbolsTable.AddReservedKeyword("and");
-                MySymbolsTable.AddReservedKeyword("or");
-                MySymbolsTable.AddReservedKeyword("not");
-                MySymbolsTable.AddReservedKeyword("xor");
-                MySymbolsTable.AddReservedKeyword("properties");
-                MySymbolsTable.AddReservedKeyword("on");
+	    OpenFilesController_ = new OpenFilesController();
+	    OpenFiles = OpenFilesController_.CreateOpenFiles();
 
-                PrettyPrintTokenVisitor Visitor = new PrettyPrintTokenVisitor(TxtEditor.getStyledDocument());
+        SolutionExplorerController_ = new SolutionExplorerController(Project_);
+	    SolutionExplorerController_.SetOpenFiles(OpenFiles);
 
-                Token CurrToken = MyLexer.GetNextToken();
-                while (CurrToken != null) {
-                    CurrToken.AcceptVisitor(Visitor);
-                    CurrToken.Print();
-                    CurrToken = MyLexer.GetNextToken();
-                }
+		SolutionExplorer = SolutionExplorerController_.CreateSolutionExplorer();
 
-            }
-        });
+        MenuBarController_ = new MenuBarController(Project_, SolutionExplorerController_);
+	    MenuBar = new JPanel();
+	    MenuBar.add(MenuBarController_.CreateMenuBar());
     }
 }
