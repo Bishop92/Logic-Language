@@ -4,8 +4,12 @@ import IDE.Controllers.OpenFilesController;
 import IDE.Controllers.SolutionExplorerController;
 import IDE.Controllers.MenuBarController;
 import IDE.Project.Project;
+import Lexer.Lexer;
+import Parser.Parser;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -14,8 +18,9 @@ public class IDE extends JFrame {
     private JTree SolutionExplorer;
     private JTabbedPane OpenFiles;
 	private JPanel MenuBar;
+	private JButton compileButton;
 
-    //The opened project
+	//The opened project
     private Project Project_;
 
     //The controller of the solution explorer
@@ -41,6 +46,21 @@ public class IDE extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
 				Project_.Save();
+			}
+		});
+		compileButton.addMouseListener(new MouseAdapter() {
+			/**
+			 * {@inheritDoc}
+			 *
+			 * @param e
+			 */
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JTextPane TextEditor = (JTextPane) OpenFiles.getSelectedComponent();
+
+				Lexer Lexer = new Lexer(TextEditor.getText());
+				Parser Parser = new Parser();
+				Parser.Parse(Lexer);
 			}
 		});
 	}

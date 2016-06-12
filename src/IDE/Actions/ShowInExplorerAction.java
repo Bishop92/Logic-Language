@@ -10,7 +10,7 @@ import java.io.IOException;
 public class ShowInExplorerAction implements Action {
 
 	//
-	SolutionExplorerController SolutionExplorerController_;
+	private SolutionExplorerController SolutionExplorerController_;
 
 	/**
 	 * @param SolutionExplorerController_i

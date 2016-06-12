@@ -2,7 +2,8 @@ package Lexer;
 
 import IDE.PrettyPrinter.Visitor;
 
-public class Token {
+public class
+Token {
 
     //The tag that represents the token
     private Tag Tag_;
@@ -18,6 +19,8 @@ public class Token {
         Position_ = Position_i - Line_i;
         Length_ = Length_i;
     }
+
+    public Tag GetTag() { return Tag_; }
 
     public int GetPosition() {
         return Position_;

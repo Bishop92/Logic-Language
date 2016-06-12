@@ -73,9 +73,6 @@ public class OpenFileInEditorAction implements Action {
 					//Create the tab that will contain the text editor
 					JPanel TextEditorPanel = new JPanel();
 
-					//Add the tab and set the title with the name of the files
-					OpenFiles_.addTab(SelectedProjectFile.GetName(), TextEditorPanel);
-					OpenFiles_.setSelectedComponent(TextEditorPanel);
 
 					//Create the text editor and bind the pretty printer
 					JTextPane TextEditor = new JTextPane();
@@ -89,8 +86,12 @@ public class OpenFileInEditorAction implements Action {
 						e.printStackTrace();
 					}
 
+					//Add the tab and set the title with the name of the files
+					OpenFiles_.addTab(SelectedProjectFile.GetName(), TextEditor);
+					OpenFiles_.setSelectedComponent(TextEditor);
+
 					//Add the text editor as child in the tab
-					TextEditorPanel.add(TextEditor);
+					//TextEditorPanel.add(TextEditor);
 				} else {
 					//The file is already open so simply visualize the related tab
 					for (int TabIndex = 0; TabIndex < OpenFiles_.getTabCount(); ++TabIndex) {

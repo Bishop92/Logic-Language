@@ -1,6 +1,10 @@
 package Lexer;
 
+import Common.Symbol;
 import Common.SymbolsTable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Lexer {
     //The code to analyze
@@ -8,6 +12,9 @@ public class Lexer {
 
     //The table of all the symbols
     private SymbolsTable SymbolsTable_;
+
+    //The map used to map the keyword to the related tags
+    private Map<String, Tag> KeywordTags_;
 
     //The current position of the code to analyze
     private int Peek_;
@@ -21,13 +28,47 @@ public class Lexer {
     //The current char that the lexer is parsing
     private int Char_;
 
-    public Lexer(String SourceCode_i, SymbolsTable SymbolsTable_i) {
+    public Lexer(String SourceCode_i) {
         SourceCode_ = SourceCode_i;
-        SymbolsTable_ = SymbolsTable_i;
+        SymbolsTable_ = new SymbolsTable();
+	    KeywordTags_ = new HashMap<>();
         Peek_ = 0;
         LookAhead_ = 0;
         Line_ = 0;
         Char_ = 0;
+
+        RegisterKeywords();
+    }
+
+    private void RegisterKeywords() {
+        RegisterKeyword("def", Tag.DEF);
+        RegisterKeyword("as", Tag.AS);
+        RegisterKeyword("int", Tag.INTTYPE);
+        RegisterKeyword("float", Tag.FLOATTYPE);
+        RegisterKeyword("bool", Tag.BOOLTYPE);
+        RegisterKeyword("string", Tag.STRINGTYPE);
+
+        /*MySymbolsTable.AddReservedKeyword("isa");
+        MySymbolsTable.AddReservedKeyword("ax");
+        MySymbolsTable.AddReservedKeyword("rule");
+        MySymbolsTable.AddReservedKeyword("true");
+        MySymbolsTable.AddReservedKeyword("false");
+        MySymbolsTable.AddReservedKeyword("and");
+        MySymbolsTable.AddReservedKeyword("or");
+        MySymbolsTable.AddReservedKeyword("not");
+        MySymbolsTable.AddReservedKeyword("xor");
+        MySymbolsTable.AddReservedKeyword("properties");
+        MySymbolsTable.AddReservedKeyword("on");
+        MySymbolsTable.AddReservedKeyword("event");*/
+    }
+
+    private void RegisterKeyword(String Keyword_i, Tag KeywordTag_i) {
+
+	    Keyword_i = Keyword_i.toLowerCase();
+
+        KeywordTags_.put(Keyword_i, KeywordTag_i);
+        SymbolsTable_.AddReservedKeyword(Keyword_i);
+
     }
 
     public Token GetNextToken() {
@@ -79,6 +120,10 @@ public class Lexer {
         } else if (Peek_ < SourceCode_.length()) {
             System.out.println("Error on line: " + Line_ + " at char: " + Char_ + ". Unexpected character found: " + CurrentChar + "(" + (int)CurrentChar + ")");
         }
+
+	    if(Peek_ == SourceCode_.length()) {
+		    return new Token(Tag.EOF, Char_, Line_, 0);
+	    }
 
         return null;
     }
@@ -164,7 +209,16 @@ public class Lexer {
             CurrentChar = GetCurrentChar();
         }
 
-        return new IDToken(SymbolsTable_.AddSymbol(Name), Position, Line_);
+	    Name = Name.toLowerCase();
+
+        if(KeywordTags_.containsKey(Name)) {
+	        return new IDToken(SymbolsTable_.GetSymbol(Name), KeywordTags_.get(Name), Position, Line_);
+        } else {
+	        Symbol SymbolInTable = SymbolsTable_.GetSymbol(Name);
+	        if(SymbolInTable == null) SymbolInTable = SymbolsTable_.AddSymbol(Name);
+
+            return new IDToken(SymbolInTable, Position, Line_);
+        }
     }
 
     private Token ParseNumToken() {
@@ -331,7 +385,6 @@ public class Lexer {
         return new Token(Tag.ADD, Position, Line_, 1);
     }
 
-
     private Token ParseMinusToken() {
 
         int Position = Peek_;
@@ -355,6 +408,7 @@ public class Lexer {
         ++Char_;
         return new Token(Tag.MULTIPLY, Position, Line_, 1);
     }
+
     private Token ParseDivideToken() {
 
         int Position = Peek_;
@@ -363,7 +417,6 @@ public class Lexer {
         ++Char_;
         return new Token(Tag.DIVIDE, Position, Line_, 1);
     }
-
 
     private boolean IsASpace(char Char_i) {
         return Char_i == ' ';
@@ -376,6 +429,7 @@ public class Lexer {
     private boolean IsASpecialReturn(char Char_i) {
         return Char_i == '\r';
     }
+
     private boolean IsAReturn(char Char_i) {
         return Char_i == '\n' || Char_i == '\r';
     }
