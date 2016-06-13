@@ -11,6 +11,7 @@ import javax.swing.tree.TreePath;
 import java.io.File;
 import java.io.IOException;
 
+//Action for creating a new file in the project
 public class CreateNewFileAction implements Action {
 
 	//The current project opened
@@ -64,7 +65,7 @@ public class CreateNewFileAction implements Action {
 				FileName = JOptionPane.showInputDialog(null, "Insert the name of the file", "New file", JOptionPane.PLAIN_MESSAGE);
 			}
 
-			if(FileName != null) {
+			if (FileName != null) {
 				//Get the path where the file must be add
 				String NewProjectFilePath = Project_.GetNewFilePath(SelectedDirectory, FileName);
 				if (NewProjectFilePath != null) {

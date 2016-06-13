@@ -3,20 +3,16 @@ package IDE.Actions;
 import IDE.Controllers.SolutionExplorerController;
 import IDE.PrettyPrinter.PrettyPrinter;
 import IDE.Project.Project;
-import IDE.Project.ProjectDirectory;
 import IDE.Project.ProjectFile;
 
 import javax.swing.*;
-import javax.swing.text.Highlighter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Vector;
-import java.util.stream.Stream;
 
+//Action for open the file in the editor
 public class OpenFileInEditorAction implements Action {
 
 	//The current project opened
@@ -70,10 +66,6 @@ public class OpenFileInEditorAction implements Action {
 					//The file is not already present in the list of the opened files, so it must be add
 					SelectedProjectFile.SetOpenInEditor(true);
 
-					//Create the tab that will contain the text editor
-					JPanel TextEditorPanel = new JPanel();
-
-
 					//Create the text editor and bind the pretty printer
 					JTextPane TextEditor = new JTextPane();
 					new PrettyPrinter(TextEditor);
@@ -88,10 +80,9 @@ public class OpenFileInEditorAction implements Action {
 
 					//Add the tab and set the title with the name of the files
 					OpenFiles_.addTab(SelectedProjectFile.GetName(), TextEditor);
-					OpenFiles_.setSelectedComponent(TextEditor);
 
-					//Add the text editor as child in the tab
-					//TextEditorPanel.add(TextEditor);
+					//Set as the current selected component
+					OpenFiles_.setSelectedComponent(TextEditor);
 				} else {
 					//The file is already open so simply visualize the related tab
 					for (int TabIndex = 0; TabIndex < OpenFiles_.getTabCount(); ++TabIndex) {

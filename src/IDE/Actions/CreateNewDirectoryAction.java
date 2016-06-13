@@ -3,14 +3,13 @@ package IDE.Actions;
 import IDE.Controllers.SolutionExplorerController;
 import IDE.Project.Project;
 import IDE.Project.ProjectDirectory;
-import IDE.Project.ProjectFile;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.io.File;
-import java.io.IOException;
 
+//Action for creating a new directory in the project
 public class CreateNewDirectoryAction implements Action {
 
 	//The current project opened
@@ -27,6 +26,7 @@ public class CreateNewDirectoryAction implements Action {
 		Project_ = Project_i;
 		SolutionExplorerController_ = SolutionExplorerController_i;
 	}
+
 	/**
 	 * Return the name of the action
 	 *
@@ -48,7 +48,7 @@ public class CreateNewDirectoryAction implements Action {
 
 		//Transform the path selected in a sequence of string in order to retrieve the correct folder in the project
 		DefaultMutableTreeNode SelectedNode = (DefaultMutableTreeNode) PathSelected.getLastPathComponent();
-		if(SelectedNode != null) {
+		if (SelectedNode != null) {
 
 			if (!SelectedNode.getAllowsChildren()) {
 				SelectedNode = (DefaultMutableTreeNode) SelectedNode.getParent();
@@ -63,7 +63,7 @@ public class CreateNewDirectoryAction implements Action {
 				DirectoryName = JOptionPane.showInputDialog(null, "Insert the name of the directory", "New directory", JOptionPane.PLAIN_MESSAGE);
 			}
 
-			if(DirectoryName != null) {
+			if (DirectoryName != null) {
 				//Get the path where the directory must be add
 				String NewProjectDirectoryPath = Project_.GetNewDirectoryPath(SelectedDirectory, DirectoryName);
 				if (NewProjectDirectoryPath != null) {

@@ -1,7 +1,6 @@
 package Parser.Productions;
 
 import Lexer.*;
-import Lexer.Tag;
 import Parser.NonTerminalSymbol;
 import Parser.Symbol;
 import Parser.TerminalSymbol;

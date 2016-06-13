@@ -14,6 +14,8 @@ public class StatementProduction extends Production {
 
 	@Override
 	protected void CreateProductionsImpl() {
+
+		//Stmt -> Declaration
 		SingleProduction Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.DEF);
 		Production.AddNonTerminalSymbol(DeclarationProduction.GetStaticName());

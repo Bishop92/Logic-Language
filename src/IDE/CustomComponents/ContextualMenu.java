@@ -3,6 +3,7 @@ package IDE.CustomComponents;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 
+//The contextual menu widget
 public class ContextualMenu {
 
 	//The contextual menu widget

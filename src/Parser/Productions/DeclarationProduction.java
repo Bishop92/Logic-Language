@@ -15,6 +15,7 @@ public class DeclarationProduction extends Production {
 	@Override
 	protected void CreateProductionsImpl() {
 
+		//Declaration -> Def id DeclarationType;
 		SingleProduction Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.DEF);
 		Production.AddTerminalSymbol(Tag.DEF);

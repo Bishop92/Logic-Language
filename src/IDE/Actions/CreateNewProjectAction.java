@@ -5,6 +5,7 @@ import IDE.Project.Project;
 import javax.swing.*;
 import java.io.File;
 
+//Action for creating a new project
 public class CreateNewProjectAction implements Action {
 
 	//The current project opened
@@ -45,7 +46,7 @@ public class CreateNewProjectAction implements Action {
 				ProjectName = JOptionPane.showInputDialog(null, "Insert the name of the project", "New project", JOptionPane.PLAIN_MESSAGE);
 			}
 
-			if(ProjectName != null) {
+			if (ProjectName != null) {
 				//Create the new project directory using the name of the project as the name of the directory
 				File ProjectDirectory = new File(SelectedDirectory.getPath() + "/" + ProjectName);
 				if (ProjectDirectory.mkdir()) {

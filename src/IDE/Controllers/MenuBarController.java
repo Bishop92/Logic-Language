@@ -7,6 +7,7 @@ import IDE.Project.Project;
 
 import javax.swing.*;
 
+//The controller of the menu bar
 public class MenuBarController {
 
 	//The widget that represents the menu bar

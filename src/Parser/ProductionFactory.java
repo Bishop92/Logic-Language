@@ -28,8 +28,12 @@ public class ProductionFactory {
 		AddProduction(new BasicTypeProduction());
 		AddProduction(new DeclarationProduction());
 		AddProduction(new DeclarationTypeProduction());
+		AddProduction(new EmptyDeclarationListProduction());
+		AddProduction(new EmptyParentTypeListProduction());
 		AddProduction(new StatementProduction());
 		AddProduction(new StatementsProduction());
+		AddProduction(new TypeDefinitionProduction());
+		AddProduction(new TypeStatementsProduction());
 
 		Productions_.forEach((ProductionName, CurrentProduction) -> CurrentProduction.CreateProductions());
 	}

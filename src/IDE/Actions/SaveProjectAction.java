@@ -2,6 +2,7 @@ package IDE.Actions;
 
 import IDE.Project.Project;
 
+//Action for saving the project
 public class SaveProjectAction implements Action {
 
 	//The current opened project

@@ -15,17 +15,19 @@ public class StatementsProduction extends Production {
 	@Override
 	protected void CreateProductionsImpl() {
 
+		//Stmts -> e
 		SingleProduction Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.CBRACE);
 		Production.AddSymbolToFirst(Tag.EOF);
 
+		//Stmts -> { Stmts }
 		Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.OBRACE);
-
 		Production.AddTerminalSymbol(Tag.OBRACE);
 		Production.AddNonTerminalSymbol(GetStaticName());
 		Production.AddTerminalSymbol(Tag.CBRACE);
 
+		//Stmts -> Stmt Stmts
 		Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.DEF);
 		Production.AddNonTerminalSymbol(StatementProduction.GetStaticName());

@@ -15,7 +15,15 @@ public class BaseTypeProduction extends Production {
 	@Override
 	protected void CreateProductionsImpl() {
 
+		//BaseType -> id EmptyParentTypeList TypeDefinition
 		SingleProduction Production = CreateSingleProduction();
+		Production.AddSymbolToFirst(Tag.ID);
+		Production.AddTerminalSymbol(Tag.ID);
+		Production.AddNonTerminalSymbol(EmptyParentTypeListProduction.GetStaticName());
+		Production.AddNonTerminalSymbol(TypeDefinitionProduction.GetStaticName());
+
+		//BaseType -> BasicType
+		Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.INTTYPE);
 		Production.AddSymbolToFirst(Tag.FLOATTYPE);
 		Production.AddSymbolToFirst(Tag.BOOLTYPE);

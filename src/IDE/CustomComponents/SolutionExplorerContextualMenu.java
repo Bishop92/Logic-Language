@@ -11,10 +11,9 @@ import IDE.Project.ProjectFile;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
+//A contextual menu for the solution explorer
 public class SolutionExplorerContextualMenu extends ContextualMenu {
 
 	//The action to create a new file and at it to the current project
@@ -39,6 +38,7 @@ public class SolutionExplorerContextualMenu extends ContextualMenu {
 
 		boolean IsAFile = false;
 
+		//Get the current selected path
 		TreePath SelectedPath = SolutionExplorerController_i.GetSolutionExplorer().getSelectionPath();
 
 		if(SelectedPath != null) {
@@ -52,7 +52,7 @@ public class SolutionExplorerContextualMenu extends ContextualMenu {
 		CreateNewFileActionItem.addActionListener(e -> CreateNewFileAction_.Execute());
 
 		//Create the item for adding an existent file not in the project
-		AddFileAction_ = new AddFileAction(Project_i, SolutionExplorerController_i);
+		AddFileAction_ = new AddFileAction(SolutionExplorerController_i);
 		JMenuItem AddFileActionItem = new JMenuItem(AddFileAction_.GetActionName());
 		AddFileActionItem.addActionListener(e -> AddFileAction_.Execute());
 
@@ -67,6 +67,7 @@ public class SolutionExplorerContextualMenu extends ContextualMenu {
 		ShowInExplorerActionItem.addActionListener(e -> ShowInExplorerAction_.Execute());
 		ShowInExplorerActionItem.setEnabled(IsAFile);
 
+		//Create the menu and add all the items
 		JMenu NewElementMenu = new JMenu("New");
 		NewElementMenu.add(CreateNewFileActionItem);
 		NewElementMenu.add(AddFileActionItem);

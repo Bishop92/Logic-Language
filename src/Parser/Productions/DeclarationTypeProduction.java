@@ -15,9 +15,16 @@ public class DeclarationTypeProduction extends Production {
 	@Override
 	protected void CreateProductionsImpl() {
 
+		//DeclarationType -> e
 		SingleProduction Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.SEMICOLON);
 
+		//DeclarationType -> TypeDefinition
+		Production = CreateSingleProduction();
+		Production.AddSymbolToFirst(Tag.OBRACE);
+		Production.AddNonTerminalSymbol(TypeDefinitionProduction.GetStaticName());
+
+		//DeclarationType -> as BaseType
 		Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.AS);
 		Production.AddTerminalSymbol(Tag.AS);
