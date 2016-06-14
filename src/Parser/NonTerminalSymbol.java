@@ -1,6 +1,5 @@
 package Parser;
 
-import Lexer.*;
 import Parser.Productions.Production;
 
 public class NonTerminalSymbol implements Symbol {
@@ -15,7 +14,8 @@ public class NonTerminalSymbol implements Symbol {
 		Production_ = Production_i;
 	}
 
-	public Token CallProduction(Lexer Lexer_i, Token CurrentToken_i) {
-		return Production_.Parse(Lexer_i, CurrentToken_i);
+	public Production GetProduction() {
+		return Production_;
 	}
+
 }

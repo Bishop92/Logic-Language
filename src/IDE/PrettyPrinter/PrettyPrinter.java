@@ -37,7 +37,6 @@ public class PrettyPrinter {
 				while (CurrToken.GetTag() != Tag.EOF) {
 					//Pass the token to the visitor and get the next token
 					CurrToken.AcceptVisitor(Visitor);
-					CurrToken.Print();
 					CurrToken = MyLexer.GetNextToken();
 				}
 			}

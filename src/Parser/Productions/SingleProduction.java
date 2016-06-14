@@ -41,4 +41,8 @@ public class SingleProduction {
 	public boolean IsSymbolInFirst(Tag Symbol_i) {
 		return First_.contains(Symbol_i);
 	}
+
+	public boolean HasTerminalForSynchronization() {
+		return ((TerminalSymbol) Symbols_.lastElement()).GetSymbol() == Tag.SEMICOLON;
+	}
 }

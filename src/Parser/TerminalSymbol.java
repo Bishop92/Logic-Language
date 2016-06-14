@@ -13,5 +13,4 @@ public class TerminalSymbol implements Symbol {
 	public Tag GetSymbol() {
 		return Symbol_;
 	}
-
 }
