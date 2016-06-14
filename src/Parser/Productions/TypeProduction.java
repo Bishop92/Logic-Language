@@ -2,32 +2,30 @@ package Parser.Productions;
 
 import Lexer.Tag;
 
-public class BaseTypeProduction extends Production {
+public class TypeProduction extends Production {
 
-	public BaseTypeProduction() {
+	public TypeProduction() {
 		super(GetStaticName());
 	}
 
 	protected static String GetStaticName() {
-		return "BaseType";
+		return "Type";
 	}
 
 	@Override
 	protected void CreateProductionsImpl() {
 
-		//BaseType -> id EmptyParentTypeList TypeDefinition
+		//Type -> id
 		SingleProduction Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.ID);
 		Production.AddTerminalSymbol(Tag.ID);
-		Production.AddNonTerminalSymbol(EmptyParentTypeListProduction.GetStaticName());
-		Production.AddNonTerminalSymbol(TypeDefinitionProduction.GetStaticName());
 
-		//BaseType -> Callback
+		//Type -> Callback
 		Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.CALLBACK);
 		Production.AddNonTerminalSymbol(CallbackProduction.GetStaticName());
 
-		//BaseType -> BasicType
+		//Type -> BasicType
 		Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.INTTYPE);
 		Production.AddSymbolToFirst(Tag.FLOATTYPE);

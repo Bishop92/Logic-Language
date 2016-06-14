@@ -61,7 +61,7 @@ public abstract class Production {
 					System.out.println("Matched symbol " + CurrentToken_i.GetTag() + " in production " + Name_);
 					CurrentToken_i = Lexer_i.GetNextToken();
 				} else {
-					System.out.println("Missing token " + ((TerminalSymbol) CurrentSymbol).GetSymbol());
+					System.out.println("Expected symbol: " + ((TerminalSymbol) CurrentSymbol).GetSymbol());
 				}
 			}
 		} else {
