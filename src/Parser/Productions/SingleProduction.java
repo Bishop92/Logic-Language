@@ -43,6 +43,10 @@ public class SingleProduction {
 	}
 
 	public boolean HasTerminalForSynchronization() {
-		return ((TerminalSymbol) Symbols_.lastElement()).GetSymbol() == Tag.SEMICOLON;
+		if(Symbols_.lastElement() instanceof TerminalSymbol) {
+			return ((TerminalSymbol) Symbols_.lastElement()).GetSymbol() == Tag.SEMICOLON;
+		}
+
+		return false;
 	}
 }

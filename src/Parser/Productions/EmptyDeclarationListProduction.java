@@ -19,10 +19,9 @@ public class EmptyDeclarationListProduction extends Production {
 		SingleProduction Production = CreateSingleProduction();
 		Production.AddSymbolToFirst(Tag.CBRACE);
 
-		//EmptyDeclarationList -> , Declaration EmptyDeclarationList
+		//EmptyDeclarationList -> Declaration EmptyDeclarationList
 		Production = CreateSingleProduction();
-		Production.AddSymbolToFirst(Tag.COMMA);
-		Production.AddTerminalSymbol(Tag.COMMA);
+		Production.AddSymbolToFirst(Tag.DEF);
 		Production.AddNonTerminalSymbol(DeclarationProduction.GetStaticName());
 		Production.AddNonTerminalSymbol(EmptyDeclarationListProduction.GetStaticName());
 	}

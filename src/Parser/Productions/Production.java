@@ -75,29 +75,23 @@ public abstract class Production {
 		SingleProduction Production = GetProduction(CurrentToken_i.GetTag());
 		Vector<Symbol> Symbols = Production.GetSymbols();
 
-		boolean ErrorAlreadyLogged = false;
-
 		for (Symbol CurrentSymbol : Symbols) {
 			if (CurrentSymbol instanceof NonTerminalSymbol) {
 				//It's a non terminal symbol, so check if the current symbol match with its FIRST
 				Production NextProduction = ((NonTerminalSymbol) CurrentSymbol).GetProduction();
 				if (NextProduction.IsSymbolInFirst(CurrentToken_i.GetTag())) {
-					ErrorAlreadyLogged = false;
 					//The symbol match, so call the parsing of the next tokens
 					CurrentToken_i = NextProduction.Parse(Lexer_i, CurrentToken_i);
-				} else if(!ErrorAlreadyLogged && NextProduction.AllowEmptyProduction()) {
+				} else if(NextProduction.AllowEmptyProduction()) {
 					//The symbol does not mach with a production, so log an error
-					//System.out.println("Syntax error: unexpected symbol found '" + ErrorUtils.GetSymbolFromTag(CurrentToken_i.GetTag()) + "' at " + ErrorUtils.GetErrorLocation(CurrentToken_i));
-					ErrorAlreadyLogged = true;
-				} else if(!ErrorAlreadyLogged) {
+					System.out.println("Syntax error: unexpected symbol found '" + ErrorUtils.GetSymbolFromTag(CurrentToken_i.GetTag()) + "' at " + ErrorUtils.GetErrorLocation(CurrentToken_i));
+				} else {
 					//The symbol does not mach with a production, so log an error
 					System.out.println("Syntax error: expected '" + NextProduction.GetName() + "' at " + ErrorUtils.GetErrorLocation(CurrentToken_i));
-					ErrorAlreadyLogged = true;
 				}
 			} else if (CurrentToken_i.GetTag() == ((TerminalSymbol) CurrentSymbol).GetSymbol()) {
-				ErrorAlreadyLogged = false;
 				CurrentToken_i = Lexer_i.GetNextToken();
-			} else if(!ErrorAlreadyLogged) {
+			} else {
 
 				String WrongTag = ErrorUtils.GetSymbolFromTag(CurrentToken_i.GetTag());
 
@@ -106,11 +100,11 @@ public abstract class Production {
 
 				System.out.println("Syntax error: unexpected symbol '" + WrongTag + "' at " + ErrorUtils.GetErrorLocation(CurrentToken_i) + ". Expected '" + ExpectedTagError + "'");
 
-				while(CurrentToken_i.GetTag() != Tag.SEMICOLON && CurrentToken_i.GetTag() != Tag.EOF) {
+				while (CurrentToken_i.GetTag() != Tag.SEMICOLON && CurrentToken_i.GetTag() != Tag.EOF) {
 					CurrentToken_i = Lexer_i.GetNextToken();
 				}
 
-				if(Production.HasTerminalForSynchronization()) {
+				if (Production.HasTerminalForSynchronization()) {
 					CurrentToken_i = Lexer_i.GetNextToken();
 				}
 
