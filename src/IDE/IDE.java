@@ -1,6 +1,7 @@
 package IDE;
 
 import IDE.Controllers.OpenFilesController;
+import IDE.Controllers.OutputController;
 import IDE.Controllers.SolutionExplorerController;
 import IDE.Controllers.MenuBarController;
 import IDE.Project.Project;
@@ -19,6 +20,7 @@ public class IDE extends JFrame {
     private JTabbedPane OpenFiles;
 	private JPanel MenuBar;
 	private JButton compileButton;
+	private JList OutputList;
 
 	//The opened project
     private Project Project_;
@@ -31,6 +33,8 @@ public class IDE extends JFrame {
 
 	//The controller of the open files
 	private OpenFilesController OpenFilesController_;
+
+	private OutputController OutputController_;
 
 	public IDE() {
 
@@ -82,5 +86,8 @@ public class IDE extends JFrame {
         MenuBarController_ = new MenuBarController(Project_, SolutionExplorerController_);
 	    MenuBar = new JPanel();
 	    MenuBar.add(MenuBarController_.CreateMenuBar());
+
+		OutputController_ = new OutputController();
+		OutputList = OutputController_.CreateOutputList();
     }
 }
