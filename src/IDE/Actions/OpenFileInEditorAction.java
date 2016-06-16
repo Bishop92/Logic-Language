@@ -1,5 +1,6 @@
 package IDE.Actions;
 
+import IDE.Controllers.OpenFilesController;
 import IDE.Controllers.SolutionExplorerController;
 import IDE.PrettyPrinter.PrettyPrinter;
 import IDE.Project.Project;
@@ -22,17 +23,17 @@ public class OpenFileInEditorAction implements Action {
 	private SolutionExplorerController SolutionExplorerController_;
 
 	//The widget with the list of the opened files
-	private JTabbedPane OpenFiles_;
+	private OpenFilesController OpenFilesController_;
 
 	/**
 	 * @param Project_i                    The current project opened
 	 * @param SolutionExplorerController_i The controller of the solution explorer of the project
-	 * @param OpenFiles_i                  The widget with the list of the opened files
+	 * @param OpenFilesController_i        The controller with the list of the opened files
 	 */
-	public OpenFileInEditorAction(Project Project_i, SolutionExplorerController SolutionExplorerController_i, JTabbedPane OpenFiles_i) {
+	public OpenFileInEditorAction(Project Project_i, SolutionExplorerController SolutionExplorerController_i, OpenFilesController OpenFilesController_i) {
 		Project_ = Project_i;
 		SolutionExplorerController_ = SolutionExplorerController_i;
-		OpenFiles_ = OpenFiles_i;
+		OpenFilesController_ = OpenFilesController_i;
 	}
 
 	/**
@@ -57,6 +58,8 @@ public class OpenFileInEditorAction implements Action {
 		DefaultMutableTreeNode SelectedNode = (DefaultMutableTreeNode) PathSelected.getLastPathComponent();
 		if (SelectedNode != null && !SelectedNode.getAllowsChildren()) {
 
+			JTabbedPane OpenFiles = OpenFilesController_.GetOpenFiles();
+
 			//Get the file selected in the project
 			ProjectFile SelectedProjectFile = (ProjectFile) SelectedNode.getUserObject();
 
@@ -79,16 +82,16 @@ public class OpenFileInEditorAction implements Action {
 					}
 
 					//Add the tab and set the title with the name of the files
-					OpenFiles_.addTab(SelectedProjectFile.GetName(), TextEditor);
+					OpenFiles.addTab(SelectedProjectFile.GetName(), TextEditor);
 
 					//Set as the current selected component
-					OpenFiles_.setSelectedComponent(TextEditor);
+					OpenFiles.setSelectedComponent(TextEditor);
 				} else {
 					//The file is already open so simply visualize the related tab
-					for (int TabIndex = 0; TabIndex < OpenFiles_.getTabCount(); ++TabIndex) {
+					for (int TabIndex = 0; TabIndex < OpenFiles.getTabCount(); ++TabIndex) {
 						//Find the tab with the same name of the file and visualize it
-						if (OpenFiles_.getTitleAt(TabIndex).equals(SelectedProjectFile.GetName())) {
-							OpenFiles_.setSelectedIndex(TabIndex);
+						if (OpenFiles.getTitleAt(TabIndex).equals(SelectedProjectFile.GetName())) {
+							OpenFiles.setSelectedIndex(TabIndex);
 							return;
 						}
 					}

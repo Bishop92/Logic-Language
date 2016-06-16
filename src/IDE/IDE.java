@@ -9,6 +9,7 @@ import Lexer.Lexer;
 import Parser.Parser;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -79,7 +80,7 @@ public class IDE extends JFrame {
 	    OpenFiles = OpenFilesController_.CreateOpenFiles();
 
         SolutionExplorerController_ = new SolutionExplorerController(Project_);
-	    SolutionExplorerController_.SetOpenFiles(OpenFiles);
+	    SolutionExplorerController_.SetOpenFilesController(OpenFilesController_);
 
 		SolutionExplorer = SolutionExplorerController_.CreateSolutionExplorer();
 
@@ -88,6 +89,7 @@ public class IDE extends JFrame {
 	    MenuBar.add(MenuBarController_.CreateMenuBar());
 
 		OutputController_ = new OutputController();
+		OutputController_.SetOpenFilesController(OpenFilesController_);
 		OutputList = OutputController_.CreateOutputList();
     }
 }

@@ -20,9 +20,9 @@ public class Log {
 		Log_ = new Vector<>();
 	}
 
-	public static void WriteLog(String Log_i) {
-		GetInstance().Log_.addElement(Log_i);
-		GetInstance().OutputController_.WriteOutput(Log_i);
+	public static void WriteError(ErrorLog Error_i) {
+		GetInstance().Log_.addElement(Error_i.toString());
+		GetInstance().OutputController_.WriteError(Error_i);
 	}
 
 	public static void SetOutputController(OutputController OutputController_i) {

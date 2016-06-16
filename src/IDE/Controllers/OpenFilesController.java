@@ -19,4 +19,18 @@ public class OpenFilesController {
 		OpenFiles_ = new JTabbedPane();
 		return OpenFiles_;
 	}
+
+	/**
+	 *
+	 * @return
+	 */
+	public JTabbedPane GetOpenFiles() {
+		return OpenFiles_;
+	}
+
+	public void SetFocus(int Position_i) {
+		JTextPane TextEditor = (JTextPane) OpenFiles_.getSelectedComponent();
+		TextEditor.requestFocus();
+		TextEditor.setCaretPosition(Position_i);
+	}
 }

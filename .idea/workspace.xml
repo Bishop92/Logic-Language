@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IDE/Controllers/OutputController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IDE/Log/Log.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IDE/Log/ErrorLog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IDE/Log/ErrorType.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IDE/IDE.form" afterPath="$PROJECT_DIR$/src/IDE/IDE.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IDE/Actions/OpenFileInEditorAction.java" afterPath="$PROJECT_DIR$/src/IDE/Actions/OpenFileInEditorAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IDE/Controllers/OpenFilesController.java" afterPath="$PROJECT_DIR$/src/IDE/Controllers/OpenFilesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IDE/Controllers/OutputController.java" afterPath="$PROJECT_DIR$/src/IDE/Controllers/OutputController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IDE/Controllers/SolutionExplorerController.java" afterPath="$PROJECT_DIR$/src/IDE/Controllers/SolutionExplorerController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IDE/IDE.java" afterPath="$PROJECT_DIR$/src/IDE/IDE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IDE/Log/Log.java" afterPath="$PROJECT_DIR$/src/IDE/Log/Log.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Parser/Productions/Production.java" afterPath="$PROJECT_DIR$/src/Parser/Productions/Production.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -67,63 +71,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Production.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Production.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Parser/Productions/Production.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="101" column="29" selection-start-line="101" selection-start-column="29" selection-end-line="101" selection-end-column="29" />
+            <state relative-caret-position="342">
+              <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TypeDefinitionProduction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Parser/Productions/TypeDefinitionProduction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="26" column="70" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="70" />
-              <folding>
-                <element signature="e#143#144#0" expanded="false" />
-                <element signature="e#172#173#0" expanded="false" />
-                <element signature="e#216#217#0" expanded="false" />
-                <element signature="e#246#247#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmptyDeclarationListProduction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Parser/Productions/EmptyDeclarationListProduction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IDE.form" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IDE/IDE.form">
-          <provider selected="true" editor-type-id="ui-designer">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="IDE.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IDE/IDE.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="62" column="84" selection-start-line="62" selection-start-column="84" selection-end-line="62" selection-end-column="84" />
+            <state relative-caret-position="546">
+              <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -132,38 +94,49 @@
       <file leaf-file-name="OutputController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/OutputController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state relative-caret-position="427">
+              <caret line="36" column="58" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#198#199#0" expanded="true" />
-                <element signature="e#234#235#0" expanded="true" />
-                <element signature="e#418#419#0" expanded="true" />
-                <element signature="e#456#457#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Log.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Log.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IDE/Log/Log.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#301#302#0" expanded="true" />
-                <element signature="e#329#330#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Parser/Parser.java">
+      <file leaf-file-name="ErrorLog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IDE/Log/ErrorLog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="e#725#726#0" expanded="true" />
+                <element signature="e#744#745#0" expanded="true" />
+                <element signature="e#769#770#0" expanded="true" />
+                <element signature="e#788#789#0" expanded="true" />
+                <element signature="e#817#818#0" expanded="true" />
+                <element signature="e#840#841#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IDE/Log/ErrorType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -172,8 +145,41 @@
       <file leaf-file-name="OpenFilesController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/OpenFilesController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+            <state relative-caret-position="561">
+              <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+              <folding>
+                <element signature="e#458#459#0" expanded="true" />
+                <element signature="e#482#483#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuBarController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/MenuBarController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenFileInEditorAction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IDE/Actions/OpenFileInEditorAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="512">
+              <caret line="84" column="78" selection-start-line="84" selection-start-column="68" selection-end-line="84" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SolutionExplorerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/SolutionExplorerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="444">
+              <caret line="143" column="91" selection-start-line="143" selection-start-column="91" selection-end-line="143" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -184,9 +190,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Class" />
         <option value="Singleton" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -206,14 +212,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Parser/DeclarationProduction.java" />
-        <option value="$PROJECT_DIR$/src/Parser/Symbol.java" />
-        <option value="$PROJECT_DIR$/src/Parser/Parser.java" />
-        <option value="$PROJECT_DIR$/src/Common/Symbol.java" />
         <option value="$PROJECT_DIR$/src/Common/SymbolsTable.java" />
         <option value="$PROJECT_DIR$/src/IDE/Actions/CreateNewFileAction.java" />
         <option value="$PROJECT_DIR$/src/IDE/Actions/CreateNewProjectAction.java" />
-        <option value="$PROJECT_DIR$/src/IDE/Actions/OpenFileInEditorAction.java" />
         <option value="$PROJECT_DIR$/src/IDE/Actions/SaveProjectAction.java" />
         <option value="$PROJECT_DIR$/src/IDE/Actions/ShowInExplorerAction.java" />
         <option value="$PROJECT_DIR$/src/IDE/Controllers/MenuBarController.java" />
@@ -252,11 +253,16 @@
         <option value="$PROJECT_DIR$/src/IDE/PrettyPrinter/PrettyPrinter.java" />
         <option value="$PROJECT_DIR$/src/Parser/Productions/SingleProduction.java" />
         <option value="$PROJECT_DIR$/src/Parser/Productions/EmptyDeclarationListProduction.java" />
-        <option value="$PROJECT_DIR$/src/IDE/IDE.java" />
         <option value="$PROJECT_DIR$/src/IDE/IDE.form" />
-        <option value="$PROJECT_DIR$/src/Parser/Productions/Production.java" />
-        <option value="$PROJECT_DIR$/src/IDE/Controllers/OutputController.java" />
+        <option value="$PROJECT_DIR$/src/IDE/Log/ErrorType.java" />
         <option value="$PROJECT_DIR$/src/IDE/Log/Log.java" />
+        <option value="$PROJECT_DIR$/src/IDE/Actions/OpenFileInEditorAction.java" />
+        <option value="$PROJECT_DIR$/src/IDE/Controllers/SolutionExplorerController.java" />
+        <option value="$PROJECT_DIR$/src/IDE/IDE.java" />
+        <option value="$PROJECT_DIR$/src/IDE/Controllers/OpenFilesController.java" />
+        <option value="$PROJECT_DIR$/src/IDE/Controllers/OutputController.java" />
+        <option value="$PROJECT_DIR$/src/Parser/Productions/Production.java" />
+        <option value="$PROJECT_DIR$/src/IDE/Log/ErrorLog.java" />
       </list>
     </option>
   </component>
@@ -359,7 +365,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -548,12 +553,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="IDE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Actions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
@@ -870,7 +898,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -880,7 +908,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23150106" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23150106" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -926,41 +954,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/MenuBarController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/Actions/ShowInExplorerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/Actions/SaveProjectAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/Actions/OpenFileInEditorAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/Actions/CreateNewProjectAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IDE/Actions/CreateNewFileAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -993,13 +986,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="69" column="47" selection-start-line="69" selection-start-column="47" selection-end-line="69" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/SolutionExplorerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="113" column="9" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1151,10 +1137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#GetSymbolFromTag#0;class#ErrorUtils#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1169,7 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1177,7 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1185,7 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1210,12 +1189,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="21" column="69" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="69" />
-          <folding>
-            <element signature="e#131#132#0" expanded="false" />
-            <element signature="e#160#161#0" expanded="false" />
-            <element signature="e#204#205#0" expanded="false" />
-            <element signature="e#228#229#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1223,12 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="22" column="65" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="65" />
-          <folding>
-            <element signature="e#137#138#0" expanded="false" />
-            <element signature="e#166#167#0" expanded="false" />
-            <element signature="e#210#211#0" expanded="false" />
-            <element signature="e#237#238#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1236,12 +1203,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="24" column="64" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="64" />
-          <folding>
-            <element signature="e#145#146#0" expanded="false" />
-            <element signature="e#174#175#0" expanded="false" />
-            <element signature="e#218#219#0" expanded="false" />
-            <element signature="e#249#250#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1249,12 +1210,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="26" column="70" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="70" />
-          <folding>
-            <element signature="e#143#144#0" expanded="false" />
-            <element signature="e#172#173#0" expanded="false" />
-            <element signature="e#216#217#0" expanded="false" />
-            <element signature="e#246#247#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1262,7 +1217,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Parser/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1274,53 +1238,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/OpenFilesController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+    <entry file="file://$PROJECT_DIR$/src/IDE/IDE.form">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/IDE.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/IDE.java">
+    <entry file="file://$PROJECT_DIR$/src/IDE/Actions/SaveProjectAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="62" column="84" selection-start-line="62" selection-start-column="84" selection-end-line="62" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Parser/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/OutputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#234#235#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Parser/Productions/Production.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="101" column="29" selection-start-line="101" selection-start-column="29" selection-end-line="101" selection-end-column="29" />
+        <state relative-caret-position="391">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1328,12 +1260,94 @@
     <entry file="file://$PROJECT_DIR$/src/IDE/Log/Log.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/SolutionExplorerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="143" column="91" selection-start-line="143" selection-start-column="91" selection-end-line="143" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/OpenFilesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+          <folding>
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="e#482#483#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/MenuBarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/Actions/OpenFileInEditorAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="84" column="78" selection-start-line="84" selection-start-column="68" selection-end-line="84" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/Controllers/OutputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="36" column="58" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/Log/ErrorType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/IDE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IDE/Log/ErrorLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+            <element signature="e#788#789#0" expanded="true" />
+            <element signature="e#817#818#0" expanded="true" />
+            <element signature="e#840#841#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Parser/Productions/Production.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1377,6 +1391,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1393,7 +1408,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

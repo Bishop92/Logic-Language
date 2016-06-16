@@ -25,8 +25,8 @@ public class SolutionExplorerController {
 	//The model of the solution explorer
 	private DefaultTreeModel SolutionExplorerModel_;
 
-	//The widget that keeps the open files
-	private JTabbedPane OpenFiles_;
+	//The controller that keeps the open files
+	private OpenFilesController OpenFilesController_;
 
 	/**
 	 * @param Project_i The project used for filling the solution explorer
@@ -71,12 +71,12 @@ public class SolutionExplorerController {
 	}
 
 	/**
-	 * Set the widget for the open files
+	 * Set the controller for the open files
 	 *
-	 * @param OpenFiles_i The widget for the open files
+	 * @param OpenFilesController_i The controller for the open files
 	 */
-	public void SetOpenFiles(JTabbedPane OpenFiles_i) {
-		OpenFiles_ = OpenFiles_i;
+	public void SetOpenFilesController(OpenFilesController OpenFilesController_i) {
+		OpenFilesController_ = OpenFilesController_i;
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class SolutionExplorerController {
 					new SolutionExplorerContextualMenu(Project_, OuterThis, e);
 				} else if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
 					//The double click has been done, so the selected file must be shown in the editor
-					OpenFileInEditorAction OpenFileInEditorAction = new OpenFileInEditorAction(Project_, OuterThis, OpenFiles_);
+					OpenFileInEditorAction OpenFileInEditorAction = new OpenFileInEditorAction(Project_, OuterThis, OpenFilesController_);
 					OpenFileInEditorAction.Execute();
 				}
 			}

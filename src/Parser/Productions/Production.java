@@ -1,5 +1,7 @@
 package Parser.Productions;
 
+import IDE.Log.ErrorLog;
+import IDE.Log.ErrorType;
 import IDE.Log.Log;
 import Lexer.*;
 import Parser.NonTerminalSymbol;
@@ -85,10 +87,10 @@ public abstract class Production {
 					CurrentToken_i = NextProduction.Parse(Lexer_i, CurrentToken_i);
 				} else if(NextProduction.AllowEmptyProduction()) {
 					//The symbol does not mach with a production, so log an error
-					Log.WriteLog("Syntax error: unexpected symbol found '" + ErrorUtils.GetSymbolFromTag(CurrentToken_i.GetTag()) + "' at " + ErrorUtils.GetErrorLocation(CurrentToken_i));
+					Log.WriteError(new ErrorLog(ErrorType.SYNTAX, CurrentToken_i, "unexpected symbol found '" + ErrorUtils.GetSymbolFromTag(CurrentToken_i.GetTag()) + "'."));
 				} else {
 					//The symbol does not mach with a production, so log an error
-					Log.WriteLog("Syntax error: expected '" + NextProduction.GetName() + "' at " + ErrorUtils.GetErrorLocation(CurrentToken_i));
+					Log.WriteError(new ErrorLog(ErrorType.SYNTAX, CurrentToken_i, "expected '" + NextProduction.GetName() + "'."));
 				}
 			} else if (CurrentToken_i.GetTag() == ((TerminalSymbol) CurrentSymbol).GetSymbol()) {
 				CurrentToken_i = Lexer_i.GetNextToken();
@@ -99,7 +101,7 @@ public abstract class Production {
 				Tag ExpectedTag = ((TerminalSymbol) CurrentSymbol).GetSymbol();
 				String ExpectedTagError = ErrorUtils.GetSymbolFromTag(ExpectedTag);
 
-				Log.WriteLog("Syntax error: unexpected symbol '" + WrongTag + "' at " + ErrorUtils.GetErrorLocation(CurrentToken_i) + ". Expected '" + ExpectedTagError + "'");
+				Log.WriteError(new ErrorLog(ErrorType.SYNTAX, CurrentToken_i, "unexpected symbol '" + WrongTag + "'. Expected '" + ExpectedTagError + "'"));
 
 				while (CurrentToken_i.GetTag() != Tag.SEMICOLON && CurrentToken_i.GetTag() != Tag.EOF) {
 					CurrentToken_i = Lexer_i.GetNextToken();
